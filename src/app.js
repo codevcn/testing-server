@@ -88,6 +88,7 @@ app.post('/login', (req, res, next) => {
 
 app.post('/logout', (req, res, next) => {
     let cookies = req.cookies
+    let headers = req.headers
 
     res
         .status(200)
