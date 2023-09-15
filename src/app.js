@@ -50,7 +50,7 @@ app.post('/register', (req, res, next) => {
             'oke-vcn-jwt-112',
             {
                 maxAge: JWT_TOKEN_MAX_AGE_IN_HOUR * 3600000,
-                domain: 'testing-client.vercel.app',
+                domain: '"vcn-testing.onrender.com"',
                 path: '/',
                 httpOnly: true,
                 secure: true,
