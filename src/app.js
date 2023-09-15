@@ -3,7 +3,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 
-const VCNID = 1001
+const VCNID = 1002
 const JWT_TOKEN_MAX_AGE_IN_HOUR = 3
 
 const app = express()
