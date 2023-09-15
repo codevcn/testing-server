@@ -9,7 +9,7 @@ app.use(cors({
 }))
 
 app.get('/', (req, res, next) => {
-    console.log('>>> req.headers >>>', req.headers)
+    console.log('>>> req.headers 1 >>>', req.headers)
 
     res.status(200).json({
         status: 'start',
@@ -24,7 +24,7 @@ app.post('/register', (req, res, next) => {
 
     let headers = req.headers
 
-    console.log('>>> req.headers >>>', headers)
+    console.log('>>> req.headers 2 >>>', headers)
 
     res
         .status(200)
@@ -45,7 +45,7 @@ app.post('/login', (req, res, next) => {
 
     let headers = req.headers
 
-    console.log('>>> req.headers >>>', headers)
+    console.log('>>> req.headers 3 >>>', headers)
 
     res.status(200).json({
         status: 'login',
