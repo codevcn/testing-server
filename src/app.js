@@ -1,7 +1,17 @@
 import express from 'express'
 import cors from 'cors'
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
 
 const app = express()
+
+//body
+app.use(bodyParser.urlencoded({ extended: true })) //handle data with form-data
+app.use(bodyParser.json())
+app.use(express.json())
+
+//cookie
+app.use(cookieParser())
 
 app.use(cors({
     origin: 'https://testing-client.vercel.app',
