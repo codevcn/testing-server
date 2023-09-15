@@ -93,7 +93,7 @@ app.post('/logout', (req, res, next) => {
     res
         .status(200)
         .clearCookie(
-            'JWT_token',
+            'JWT_vcn',
             {
                 domain: cookie_opt.domain,
                 path: cookie_opt.path,
