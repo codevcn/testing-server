@@ -3,7 +3,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 
-const VCNID = 1005 //1004
+const VCNID = 1006 //1005
 const JWT_TOKEN_MAX_AGE_IN_HOUR = 3
 
 const cookie_opt = {
@@ -95,8 +95,7 @@ app.post('/logout', (req, res, next) => {
         .clearCookie(
             'JWT_vcn',
             {
-                domain: cookie_opt.domain,
-                path: cookie_opt.path,
+                ...cookie_opt
             }
         )
         .json({
