@@ -3,8 +3,17 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 
-const VCNID = 1004 //1003
+const VCNID = 1005 //1004
 const JWT_TOKEN_MAX_AGE_IN_HOUR = 3
+
+const cookie_opt = {
+    maxAge: JWT_TOKEN_MAX_AGE_IN_HOUR * 3600000,
+    domain: 'vcn-testing.onrender.com',
+    path: '/',
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+}
 
 const app = express()
 
@@ -48,14 +57,7 @@ app.post('/register', (req, res, next) => {
         .cookie(
             'JWT_vcn',
             'oke-vcn-jwt-112',
-            {
-                maxAge: JWT_TOKEN_MAX_AGE_IN_HOUR * 3600000,
-                domain: 'vcn-testing.onrender.com',
-                path: '/',
-                httpOnly: true,
-                secure: true,
-                sameSite: 'none',
-            }
+            cookie_opt
         )
         .json({
             status: 'register',
@@ -92,8 +94,8 @@ app.post('/logout', (req, res, next) => {
         .clearCookie(
             'JWT_token',
             {
-                domain: this.cookie_options.domain,
-                path: this.cookie_options.path,
+                domain: cookie_opt.domain,
+                path: cookie_opt.path,
             }
         )
         .json({
