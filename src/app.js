@@ -86,13 +86,22 @@ app.post('/login', (req, res, next) => {
 app.post('/logout', (req, res, next) => {
     let cookies = req.cookies
 
-    res.status(200).json({
-        status: 'logout',
-        message: 'Response from vcn server',
-        headers: headers,
-        cookies: cookies,
-        VCNID,
-    })
+    res
+        .status(200)
+        .clearCookie(
+            'JWT_token',
+            {
+                domain: this.cookie_options.domain,
+                path: this.cookie_options.path,
+            }
+        )
+        .json({
+            status: 'logout',
+            message: 'Response from vcn server',
+            headers: headers,
+            cookies: cookies,
+            VCNID,
+        })
 })
 
 export default app
