@@ -3,7 +3,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 
-const VCNID = 1003
+const VCNID = 1004 //1003
 const JWT_TOKEN_MAX_AGE_IN_HOUR = 3
 
 const app = express()
@@ -54,6 +54,7 @@ app.post('/register', (req, res, next) => {
                 path: '/',
                 httpOnly: true,
                 secure: true,
+                sameSite: 'none',
             }
         )
         .json({
