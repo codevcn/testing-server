@@ -3,6 +3,9 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 
+const VCNID = 1001
+const JWT_TOKEN_MAX_AGE_IN_HOUR = 3
+
 const app = express()
 
 //body
@@ -26,7 +29,8 @@ app.get('/', (req, res, next) => {
     res.status(200).json({
         status: 'start',
         message: 'Response from vcn server',
-        data: headers,
+        headers: headers,
+        VCNID,
     })
 })
 
@@ -41,15 +45,23 @@ app.post('/register', (req, res, next) => {
 
     res
         .status(200)
-        .cookie('JWT_vcn', 'oke vcn jwt 112', {
-            httpOnly: true,
-            domain: headers.origin,
-        })
+        .cookie(
+            'JWT_vcn',
+            'oke-vcn-jwt-112',
+            {
+                maxAge: JWT_TOKEN_MAX_AGE_IN_HOUR * 3600000,
+                domain: 'testing-client.vercel.app',
+                path: '/',
+                httpOnly: true,
+                secure: true,
+            }
+        )
         .json({
             status: 'register',
             message: 'Response from vcn server',
-            data: headers,
+            headers: headers,
             body: body,
+            VCNID,
         })
 })
 
@@ -65,8 +77,21 @@ app.post('/login', (req, res, next) => {
     res.status(200).json({
         status: 'login',
         message: 'Response from vcn server',
-        data: headers,
+        headers: headers,
         cookies: cookies,
+        VCNID,
+    })
+})
+
+app.post('/logout', (req, res, next) => {
+    let cookies = req.cookies
+
+    res.status(200).json({
+        status: 'logout',
+        message: 'Response from vcn server',
+        headers: headers,
+        cookies: cookies,
+        VCNID,
     })
 })
 
