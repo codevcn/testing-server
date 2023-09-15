@@ -3,7 +3,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 
-const VCNID = 1002
+const VCNID = 1003
 const JWT_TOKEN_MAX_AGE_IN_HOUR = 3
 
 const app = express()
@@ -50,7 +50,7 @@ app.post('/register', (req, res, next) => {
             'oke-vcn-jwt-112',
             {
                 maxAge: JWT_TOKEN_MAX_AGE_IN_HOUR * 3600000,
-                domain: '"vcn-testing.onrender.com"',
+                domain: 'vcn-testing.onrender.com',
                 path: '/',
                 httpOnly: true,
                 secure: true,
