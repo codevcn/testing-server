@@ -9,18 +9,21 @@ app.use(cors({
 }))
 
 app.get('/', (req, res, next) => {
-    console.log('>>> req.headers 1 >>>', req.headers)
+    let headers = req.headers
+
+    console.log('>>> req.headers 1 >>>', headers)
 
     res.status(200).json({
         status: 'start',
         message: 'Response from vcn server',
+        data: headers,
     })
 })
 
 app.post('/register', (req, res, next) => {
-    let { pass, username } = req.body
+    let body = req.body
 
-    console.log('>>> body >>>', { pass, username })
+    console.log('>>> body >>>', body)
 
     let headers = req.headers
 
@@ -35,6 +38,8 @@ app.post('/register', (req, res, next) => {
         .json({
             status: 'register',
             message: 'Response from vcn server',
+            data: headers,
+            body: body,
         })
 })
 
@@ -50,6 +55,8 @@ app.post('/login', (req, res, next) => {
     res.status(200).json({
         status: 'login',
         message: 'Response from vcn server',
+        data: headers,
+        cookies: cookies,
     })
 })
 
